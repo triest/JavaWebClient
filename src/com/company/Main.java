@@ -11,29 +11,31 @@ public class Main {
 
     public static void main(String[] args) {
 
-        final WebClient webClient = new WebClient();
+        WebClient webClient = new WebClient();
+        webClient.getOptions().setThrowExceptionOnScriptError(false);
         HtmlPage page = null;
         try {
-            page = webClient.getPage("http://google.com");
+            page = webClient.getPage("https://qna.habr.com/");
+            //    page = webClient.getPage("http://google.com/");
         } catch (IOException e) {
-            //     e.printStackTrace();
+            //          e.printStackTrace();
             System.out.println("Exaption");
+            System.exit(100500);
         }
 
         HtmlInput searchBox = page.getElementByName("q");
         searchBox.setValueAttribute("Selenium");
+        System.out.println(searchBox.asText());
+
 /*
         HtmlAnchor seleniumButton = page.getAnchorByText("Selenium");
         try {
             seleniumButton.click();
         } catch (IOException e) {
-            System.out.println("Exaption");
+            e.printStackTrace();
         }
-        */
-
-        //   List<HtmlDivision> date = page.getByXPath("//div[@class='question question_short']");
-        //   System.out.println(date.toString());
-
+*/
+/*
 
         //    HtmlSubmitInput googleSearchSubmitButton = page.getElementByName("btnK"); // sometimes it's "btnK"
 
@@ -42,6 +44,6 @@ public class Main {
         // HtmlDivision resultStatsDiv = page.getFirstByXPath("//div[@id='resultStats']");
 
         //    System.out.println(resultStatsDiv.asText()); // About 309,000 results
-        webClient.close();
+        webClient.close();*/
     }
 }
